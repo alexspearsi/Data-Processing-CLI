@@ -45,7 +45,6 @@ export function startRepl() {
   });
 
   rl.on('SIGINT', () => {
-    goodbye();
     rl.close()
   })
 }

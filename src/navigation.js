@@ -11,6 +11,9 @@ export async function navigation(input, currentDir) {
     case 'cd':
       return await cd(currentDir, args[0])
 
+    case 'ls':
+      return await ls(currentDir)
+
     default:
       console.log('No such option');
       return { dir: currentDir, success: false }
@@ -50,5 +53,31 @@ export async function cd(currentDir, targetPath) {
     console.log('Operation failed');
 
     return { directory: currentDir, success: false }
+  }
+}
+
+export async function ls (currentDir) {
+  try {
+    const dirArray = await fs.readdir(currentDir, { withFileTypes: true })
+
+    const folderArray = dirArray
+      .filter((item) => item.isDirectory())
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((item) => `${item.name} [folder]`)
+
+    const fileArray = dirArray
+      .filter((item) => item.isFile())
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((item) => `${item.name} [file]`)
+
+    const concatedArray = folderArray.concat(fileArray)
+    concatedArray.forEach((item) => console.log(item))
+  
+    return { directory: currentDir, success: true }
+  } catch {
+    console.log('Operation failed');
+
+    return { directory: currentDir, success: false 
+    }
   }
 }
