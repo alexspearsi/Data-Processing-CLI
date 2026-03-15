@@ -2,6 +2,7 @@ import * as fs from 'node:fs/promises';
 import { resolvePath } from './commands/utils/pathResolver.js'
 import { count } from './commands/count.js'
 import { convertCSVtoJSON } from './commands/csvToJson.js'
+import { convertJSONtoCSV } from './commands/jsonToCsv.js';
 
 export async function navigation(input, currentDir) {
   const [command, ...args] = input.trim().split(' ');
@@ -21,6 +22,9 @@ export async function navigation(input, currentDir) {
 
     case 'csv-to-json':
       return await convertCSVtoJSON(currentDir, ...args)
+
+    case 'json-to-csv':
+      return await convertJSONtoCSV(currentDir, ...args)
 
     default:
       console.log('Invalid input');
