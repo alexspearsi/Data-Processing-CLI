@@ -1,6 +1,7 @@
 import * as fs from 'node:fs/promises';
 import { resolvePath } from './commands/utils/pathResolver.js'
 import { count } from './commands/count.js'
+import { convertCSVtoJSON } from './commands/csvToJson.js'
 
 export async function navigation(input, currentDir) {
   const [command, ...args] = input.trim().split(' ');
@@ -18,11 +19,22 @@ export async function navigation(input, currentDir) {
     case 'count':
       return await count(currentDir, args[0], args[1])
 
+    case 'csv-to-json':
+      return await convertCSVtoJSON(currentDir, ...args)
+
     default:
-      console.log('No such option');
+      console.log('Invalid input');
       return { directory: currentDir, success: false }
   }
 }
+
+
+
+
+
+
+
+
 
 export function up(currentDir) {
   return path.resolve(currentDir, '..')
