@@ -5,6 +5,7 @@ import { convertJSONtoCSV } from './commands/jsonToCsv.js'
 import { createLogStats } from './commands/logStats.js'
 import { hash } from './commands/hash.js'
 import { hashCompare } from './commands/hashCompare.js';
+import { encrypt } from './commands/encrypt.js'
 
 export async function navigation(input, currentDir) {
   const [command, ...args] = input.trim().split(' ');
@@ -36,6 +37,9 @@ export async function navigation(input, currentDir) {
 
     case 'hash-compare':
       return await hashCompare(currentDir, args)
+
+    case 'encrypt':
+      return await encrypt(currentDir, args)
 
     default:
       console.log('Invalid input');
