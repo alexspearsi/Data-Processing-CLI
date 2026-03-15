@@ -1,5 +1,6 @@
 import os from 'node:os';
 import readline from 'node:readline';
+import { navigation } from './navigation.js';
 import { goodbye } from './commands/utils/output.js';
 
 export function startRepl() {
@@ -21,7 +22,7 @@ export function startRepl() {
 
   rl.on('line', async (line) => {
     try {
-      currentDir = await fileManager(line.trim(), currentDir);
+      currentDir = await navigation(line.trim(), currentDir);
 
       updatePrompt();
     } catch (err) {
