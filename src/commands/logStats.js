@@ -111,7 +111,6 @@ export async function createLogStats(currentDir, input, inputPath, output, outpu
 
     return { directory: currentDir, success: true }
   } catch(e) {
-    console.log(e);
     console.log('Operation failed')
 
 
