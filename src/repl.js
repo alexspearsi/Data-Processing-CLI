@@ -22,11 +22,18 @@ export function startRepl() {
 
   rl.on('line', async (line) => {
     try {
-      currentDir = await navigation(line.trim(), currentDir);
+      const { directory, success } = await navigation(line.trim(), currentDir);
 
-      updatePrompt();
+      currentDir = directory;
+
+      if (success) {
+        updatePrompt()
+      } else {
+        rl.prompt();
+      }
+
     } catch (err) {
-      console.log(`\x1b[31mOperation failed :(\x1b[0m \nReason: [${err.message || err}] \n`);
+      console.log('Operation failed');
 
       rl.prompt();
     }
