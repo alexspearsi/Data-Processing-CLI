@@ -1,0 +1,20 @@
+{
+  "name": "data-processing-cli",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/alexspearsi/Data-Processing-CLI#readme",
+  "bugs": {
+    "url": "https://github.com/alexspearsi/Data-Processing-CLI/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexspearsi/Data-Processing-CLI.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node src/main.js"
+  }
+}
